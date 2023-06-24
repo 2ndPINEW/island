@@ -5,10 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IslandComponent } from './modules/island/island.component';
 import { StoreModule } from '@ngrx/store';
+import { islandSurfaceColorReducer } from './modules/island/island.reducer';
 
 @NgModule({
   declarations: [AppComponent, IslandComponent],
-  imports: [BrowserModule, AppRoutingModule, StoreModule.forRoot({}, {})],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    StoreModule.forRoot(
+      {
+        islandSurfaceColor: islandSurfaceColorReducer,
+      },
+      {}
+    ),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
