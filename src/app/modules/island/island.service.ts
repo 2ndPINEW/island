@@ -7,6 +7,8 @@ const islandBaseKey = 'IslandBase';
 const islandObjectKey = 'Island';
 const islandInlandKey = 'island';
 const islandBeachKey = 'island_1';
+const seaObjectKey = 'Sea';
+const skyObjectKey = 'Sky';
 
 const totalSteps = 100;
 
@@ -43,14 +45,14 @@ export class IslandService {
       });
   }
 
-  currentBeachSurfaceColor = { r: 0, g: 0, b: 0 };
+  private currentBeachSurfaceColor = { r: 0, g: 0, b: 0 };
   changeBeachColor(color: string) {
     of(color)
       .pipe(
         switchMap((targetHex) =>
           this.colorTransitionObservable(
             targetHex,
-            this.currentInlandSurfaceColor
+            this.currentBeachSurfaceColor
           )
         )
       )
@@ -69,6 +71,52 @@ export class IslandService {
         }
       });
   }
+
+  private currentSeaSurfaceColor = { r: 0, g: 0, b: 0 };
+  changeSeaColor(color: string) {
+    of(color)
+      .pipe(
+        switchMap((targetHex) =>
+          this.colorTransitionObservable(targetHex, this.currentSeaSurfaceColor)
+        )
+      )
+      .subscribe((color) => {
+        const islandBase = this.threeService.objects.find(
+          (object) => object.name === islandBaseKey
+        );
+        const seaObject = islandBase?.children.find(
+          (object) => object.name === seaObjectKey
+        );
+        if (seaObject && seaObject instanceof THREE.Mesh) {
+          seaObject.material.color = new THREE.Color(color);
+        }
+      });
+  }
+
+  private currentSkyColor = { r: 0, g: 0, b: 0 };
+  changeSkyColor(color: string) {
+    of(color)
+      .pipe(
+        switchMap((targetHex) =>
+          this.colorTransitionObservable(targetHex, this.currentSkyColor)
+        )
+      )
+      .subscribe((color) => {
+        const islandBase = this.threeService.objects.find(
+          (object) => object.name === islandBaseKey
+        );
+        const skyObject = islandBase?.children.find(
+          (object) => object.name === skyObjectKey
+        );
+        if (skyObject && skyObject instanceof THREE.Mesh) {
+          skyObject.material.color = new THREE.Color(color);
+        }
+      });
+  }
+
+  // ----------------------------
+  // 以下utils
+  // ----------------------------
 
   private colorTransitionObservable(
     targetHex: string,
@@ -90,10 +138,6 @@ export class IslandService {
       })
     );
   }
-
-  // ----------------------------
-  // TODO: 以下utils に移動する
-  // ----------------------------
 
   private hexToRgb(hex: string) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);

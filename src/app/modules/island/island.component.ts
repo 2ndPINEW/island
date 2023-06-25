@@ -20,6 +20,8 @@ export class IslandComponent {
     private readonly store: Store<{
       inlandSurfaceColor: `#${string}`;
       beachSurfaceColor: `#${string}`;
+      seaSurfaceColor: `#${string}`;
+      skyColor: `#${string}`;
     }>,
     private readonly threeService: ThreeService,
     private readonly islandService: IslandService
@@ -37,6 +39,14 @@ export class IslandComponent {
 
     this.store.select('beachSurfaceColor').subscribe((color) => {
       this.islandService.changeBeachColor(color);
+    });
+
+    this.store.select('seaSurfaceColor').subscribe((color) => {
+      this.islandService.changeSeaColor(color);
+    });
+
+    this.store.select('skyColor').subscribe((color) => {
+      this.islandService.changeSkyColor(color);
     });
   }
 }

@@ -8,6 +8,8 @@ import { StoreModule } from '@ngrx/store';
 import {
   beachSurfaceColorReducer,
   inlandSurfaceColorReducer,
+  seaSurfaceColorReducer,
+  skyColorReducer,
 } from './modules/island/island.reducer';
 import { ThreeComponent } from './modules/three/three.component';
 
@@ -20,6 +22,8 @@ import { ThreeComponent } from './modules/three/three.component';
       {
         inlandSurfaceColor: inlandSurfaceColorReducer,
         beachSurfaceColor: beachSurfaceColorReducer,
+        seaSurfaceColor: seaSurfaceColorReducer,
+        skyColor: skyColorReducer,
       },
       {}
     ),
