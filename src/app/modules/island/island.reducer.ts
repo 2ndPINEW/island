@@ -1,11 +1,20 @@
 import { createReducer, on } from '@ngrx/store';
-import { setIslandSurfaceColor } from './island.actions';
+import { setBeachSurfaceColor, setInlandSurfaceColor } from './island.actions';
 
-export const initialIslandSurfaceColor = '#ffffff';
+const initialInlandSurfaceColor = '#ffffff';
+const initialBeachSurfaceColor = '#ffffff';
 
-export const islandSurfaceColorReducer = createReducer(
-  initialIslandSurfaceColor,
-  on(setIslandSurfaceColor, (state, { color }) => {
+export const inlandSurfaceColorReducer = createReducer(
+  initialInlandSurfaceColor,
+  on(setInlandSurfaceColor, (state, { color }) => {
+    state = color;
+    return color;
+  })
+);
+
+export const beachSurfaceColorReducer = createReducer(
+  initialBeachSurfaceColor,
+  on(setBeachSurfaceColor, (state, { color }) => {
     state = color;
     return color;
   })

@@ -5,16 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IslandComponent } from './modules/island/island.component';
 import { StoreModule } from '@ngrx/store';
-import { islandSurfaceColorReducer } from './modules/island/island.reducer';
+import {
+  beachSurfaceColorReducer,
+  inlandSurfaceColorReducer,
+} from './modules/island/island.reducer';
+import { ThreeComponent } from './modules/three/three.component';
 
 @NgModule({
-  declarations: [AppComponent, IslandComponent],
+  declarations: [AppComponent, IslandComponent, ThreeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot(
       {
-        islandSurfaceColor: islandSurfaceColorReducer,
+        inlandSurfaceColor: inlandSurfaceColorReducer,
+        beachSurfaceColor: beachSurfaceColorReducer,
       },
       {}
     ),
