@@ -128,10 +128,10 @@ export class IslandService {
       directionalLight &&
       directionalLight instanceof THREE.DirectionalLight
     ) {
-      directionalLight.intensity = strength / 50;
+      directionalLight.intensity = strength / 100;
     }
     if (ambientLight && ambientLight instanceof THREE.AmbientLight) {
-      ambientLight.intensity = strength / 1000;
+      ambientLight.intensity = strength / 500;
     }
   }
 
