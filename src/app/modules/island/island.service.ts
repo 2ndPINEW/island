@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { ThreeService } from '../three/three.service';
 import * as THREE from 'three';
 import { interval, map, of, switchMap, take } from 'rxjs';
-
-const islandBaseKey = 'IslandBase';
-const islandObjectKey = 'Island';
-const islandInlandKey = 'island';
-const islandBeachKey = 'island_1';
-const seaObjectKey = 'Sea';
-const skyObjectKey = 'Sky';
+import {
+  islandBaseKey,
+  islandBeachKey,
+  islandInlandKey,
+  islandObjectKey,
+  seaObjectKey,
+  skyObjectKey,
+} from 'src/app/constants/model-name';
 
 const totalSteps = 100;
 

@@ -2,8 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ThreeService } from '../three/three.service';
 import { IslandService } from './island.service';
-
-const islandBaseKey = 'IslandBase';
+import { islandBaseKey } from 'src/app/constants/model-name';
 
 @Component({
   selector: 'app-island',
