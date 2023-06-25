@@ -7,6 +7,7 @@ import { IslandState } from './island';
 import {
   selectBeachColor,
   selectInlandColor,
+  selectLightStrength,
   selectSeaColor,
   selectSkyColor,
 } from './island.selector';
@@ -48,6 +49,10 @@ export class IslandComponent {
 
     this.store.select(selectSkyColor).subscribe((color) => {
       this.islandService.changeSkyColor(color);
+    });
+
+    this.store.select(selectLightStrength).subscribe((strength) => {
+      this.islandService.changeLightStrength(strength);
     });
   }
 }

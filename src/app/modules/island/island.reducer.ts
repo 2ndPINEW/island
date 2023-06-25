@@ -2,17 +2,20 @@ import { createReducer, on } from '@ngrx/store';
 import {
   setBeachColor,
   setInlandColor,
+  setLightStrength,
   setSeaAlpha,
   setSeaColor,
   setSkyColor,
 } from './island.actions';
+import { IslandState } from './island';
 
-const initialState = {
+const initialState: IslandState = {
   inlandColor: '#3A9648',
   beachColor: '#E7E0AF',
   seaColor: '#7DB3E7',
   seaAlpha: 0.5,
   skyColor: '#78A3FF',
+  lightStrength: 100,
 };
 
 export const islandReducer = createReducer(
@@ -31,5 +34,8 @@ export const islandReducer = createReducer(
   }),
   on(setSkyColor, (state, { color }) => {
     return { ...state, skyColor: color };
+  }),
+  on(setLightStrength, (state, { strength }) => {
+    return { ...state, lightStrength: strength };
   })
 );

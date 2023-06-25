@@ -37,10 +37,12 @@ export class ThreeService {
     this.scene.add(axesHelper);
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+    ambientLight.name = 'ambientLight';
     this._objects.push(ambientLight);
     this.scene.add(ambientLight);
 
     const light = new THREE.DirectionalLight(0xffffff, 1.8);
+    light.name = 'directionalLight';
     light.position.set(-5, 30, 24);
     light.castShadow = true;
     light.shadow.mapSize.width = 4096;

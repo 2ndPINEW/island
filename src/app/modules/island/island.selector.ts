@@ -27,3 +27,8 @@ export const selectSkyColor = createSelector(
   selectIsland,
   (state) => state.skyColor
 );
+
+export const selectLightStrength = createSelector(
+  selectIsland,
+  (state) => state.lightStrength
+);

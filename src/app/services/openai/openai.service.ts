@@ -6,6 +6,7 @@ import { IslandState } from 'src/app/modules/island/island';
 import {
   setBeachColor,
   setInlandColor,
+  setLightStrength,
   setSeaColor,
   setSkyColor,
 } from 'src/app/modules/island/island.actions';
@@ -77,6 +78,10 @@ export class OpenaiService {
                         type: 'string',
                         description: '空の色。例: #78A3FF',
                       },
+                      lightStrength: {
+                        type: 'number',
+                        description: '光の強さ。1 ~ 100, 例: 80',
+                      },
                     },
                     required: [],
                   },
@@ -92,8 +97,13 @@ export class OpenaiService {
                 const finishReason = choice.finish_reason;
                 const functionCall = choice.message?.function_call;
                 if (finishReason === 'function_call' && functionCall) {
-                  const { inlandColor, beachColor, seaColor, skyColor } =
-                    JSON.parse(functionCall.arguments || '{}');
+                  const {
+                    inlandColor,
+                    beachColor,
+                    seaColor,
+                    skyColor,
+                    lightStrength,
+                  } = JSON.parse(functionCall.arguments || '{}');
                   const functionName = functionCall.name;
                   if (functionName === 'setObjectColor') {
                     if (inlandColor) {
@@ -107,6 +117,9 @@ export class OpenaiService {
                     }
                     if (skyColor) {
                       this.store.dispatch(setSkyColor(skyColor));
+                    }
+                    if (lightStrength) {
+                      this.store.dispatch(setLightStrength(lightStrength));
                     }
                   }
                 }

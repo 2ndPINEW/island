@@ -116,6 +116,24 @@ export class IslandService {
       });
   }
 
+  changeLightStrength(strength: number) {
+    const directionalLight = this.threeService.objects.find(
+      (object) => object.name === 'directionalLight'
+    );
+    const ambientLight = this.threeService.objects.find(
+      (object) => object.name === 'ambientLight'
+    );
+    if (
+      directionalLight &&
+      directionalLight instanceof THREE.DirectionalLight
+    ) {
+      directionalLight.intensity = strength / 50;
+    }
+    if (ambientLight && ambientLight instanceof THREE.AmbientLight) {
+      ambientLight.intensity = strength / 1000;
+    }
+  }
+
   // ----------------------------
   // 以下utils
   // ----------------------------

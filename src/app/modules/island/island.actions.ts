@@ -29,3 +29,8 @@ export const setSkyColor = createAction(
   '[IslandComponent] set sky color',
   (color: `#${string}`) => ({ color })
 );
+
+export const setLightStrength = createAction(
+  '[IslandComponent] set light strength',
+  (strength: number) => ({ strength })
+);
