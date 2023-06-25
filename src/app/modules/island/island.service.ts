@@ -111,6 +111,7 @@ export class IslandService {
         );
         if (skyObject && skyObject instanceof THREE.Mesh) {
           skyObject.material.color = new THREE.Color(color);
+          skyObject.material.emissive = new THREE.Color(color);
         }
       });
   }

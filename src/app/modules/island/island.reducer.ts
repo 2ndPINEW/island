@@ -3,6 +3,7 @@ import {
   setBeachSurfaceColor,
   setInlandSurfaceColor,
   setSeaSurfaceAlpha,
+  setSeaSurfaceColor,
   setSkyColor,
 } from './island.actions';
 
@@ -30,7 +31,7 @@ export const beachSurfaceColorReducer = createReducer(
 
 export const seaSurfaceColorReducer = createReducer(
   initialSeaSurfaceColor,
-  on(setBeachSurfaceColor, (state, { color }) => {
+  on(setSeaSurfaceColor, (state, { color }) => {
     state = color;
     return color;
   })
