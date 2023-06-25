@@ -9,7 +9,7 @@ const islandObjectKey = 'Island';
 const islandInlandKey = 'island';
 const islandBeachKey = 'island_1';
 
-const totalSteps = 300;
+const totalSteps = 100;
 
 @Component({
   selector: 'app-island',
@@ -100,7 +100,7 @@ export class IslandComponent {
     if (!targetRgb) {
       return [];
     }
-    return interval(32).pipe(
+    return interval(16).pipe(
       take(totalSteps),
       map((step) => {
         const amt = step / totalSteps;
