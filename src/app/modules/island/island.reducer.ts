@@ -1,54 +1,35 @@
 import { createReducer, on } from '@ngrx/store';
 import {
-  setBeachSurfaceColor,
-  setInlandSurfaceColor,
-  setSeaSurfaceAlpha,
-  setSeaSurfaceColor,
+  setBeachColor,
+  setInlandColor,
+  setSeaAlpha,
+  setSeaColor,
   setSkyColor,
 } from './island.actions';
 
-const initialInlandSurfaceColor = '#3A9648';
-const initialBeachSurfaceColor = '#E7E0AF';
-const initialSeaSurfaceColor = '#7DB3E7';
-const initialSeaSurfaceAlpha = 0.5;
-const initialSkyColor = '#78A3FF';
+const initialState = {
+  inlandColor: '#3A9648',
+  beachColor: '#E7E0AF',
+  seaColor: '#7DB3E7',
+  seaAlpha: 0.5,
+  skyColor: '#78A3FF',
+};
 
-export const inlandSurfaceColorReducer = createReducer(
-  initialInlandSurfaceColor,
-  on(setInlandSurfaceColor, (state, { color }) => {
-    state = color;
-    return color;
-  })
-);
-
-export const beachSurfaceColorReducer = createReducer(
-  initialBeachSurfaceColor,
-  on(setBeachSurfaceColor, (state, { color }) => {
-    state = color;
-    return color;
-  })
-);
-
-export const seaSurfaceColorReducer = createReducer(
-  initialSeaSurfaceColor,
-  on(setSeaSurfaceColor, (state, { color }) => {
-    state = color;
-    return color;
-  })
-);
-
-export const seaSurfaceAlphaReducer = createReducer(
-  initialSeaSurfaceAlpha,
-  on(setSeaSurfaceAlpha, (state, { alpha }) => {
-    state = alpha;
-    return alpha;
-  })
-);
-
-export const skyColorReducer = createReducer(
-  initialSkyColor,
+export const islandReducer = createReducer(
+  initialState,
+  on(setInlandColor, (state, { color }) => {
+    return { ...state, inlandColor: color };
+  }),
+  on(setBeachColor, (state, { color }) => {
+    return { ...state, beachColor: color };
+  }),
+  on(setSeaColor, (state, { color }) => {
+    return { ...state, seaColor: color };
+  }),
+  on(setSeaAlpha, (state, { alpha }) => {
+    return { ...state, seaAlpha: alpha };
+  }),
   on(setSkyColor, (state, { color }) => {
-    state = color;
-    return color;
+    return { ...state, skyColor: color };
   })
 );
