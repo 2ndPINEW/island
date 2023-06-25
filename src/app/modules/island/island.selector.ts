@@ -32,3 +32,13 @@ export const selectLightStrength = createSelector(
   selectIsland,
   (state) => state.lightStrength
 );
+
+export const selectTreeLeafColor = createSelector(
+  selectIsland,
+  (state) => state.treeLeafColor
+);
+
+export const selectTreeTrunkColor = createSelector(
+  selectIsland,
+  (state) => state.treeTrunkColor
+);

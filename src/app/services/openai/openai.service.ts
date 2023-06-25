@@ -9,6 +9,8 @@ import {
   setLightStrength,
   setSeaColor,
   setSkyColor,
+  setTreeLeafColor,
+  setTreeTrunkColor,
 } from 'src/app/modules/island/island.actions';
 import { selectIsland } from 'src/app/modules/island/island.selector';
 
@@ -52,12 +54,17 @@ export class OpenaiService {
                     island
                   )}`,
                 },
+                {
+                  role: 'system',
+                  content:
+                    '例えば深夜の場合の明るさは5で、空の色は黒く深い青です',
+                },
                 { role: 'user', content: input },
               ],
               functions: [
                 {
-                  name: 'setObjectColor',
-                  description: '島の地表やオブジェクトの色を変更します',
+                  name: 'setObjectState',
+                  description: '島の地表やオブジェクトの色、状態を変更します',
                   parameters: {
                     type: 'object',
                     properties: {
@@ -82,6 +89,14 @@ export class OpenaiService {
                         type: 'number',
                         description: '光の強さ。1 ~ 100, 例: 80',
                       },
+                      treeLeafColor: {
+                        type: 'string',
+                        description: '木の葉の色。例: #20A72A',
+                      },
+                      treeTrunkColor: {
+                        type: 'string',
+                        description: '木の幹の色。例: #94493A',
+                      },
                     },
                     required: [],
                   },
@@ -103,9 +118,11 @@ export class OpenaiService {
                     seaColor,
                     skyColor,
                     lightStrength,
+                    treeLeafColor,
+                    treeTrunkColor,
                   } = JSON.parse(functionCall.arguments || '{}');
                   const functionName = functionCall.name;
-                  if (functionName === 'setObjectColor') {
+                  if (functionName === 'setObjectState') {
                     if (inlandColor) {
                       this.store.dispatch(setInlandColor(inlandColor));
                     }
@@ -120,6 +137,12 @@ export class OpenaiService {
                     }
                     if (lightStrength) {
                       this.store.dispatch(setLightStrength(lightStrength));
+                    }
+                    if (treeLeafColor) {
+                      this.store.dispatch(setTreeLeafColor(treeLeafColor));
+                    }
+                    if (treeTrunkColor) {
+                      this.store.dispatch(setTreeTrunkColor(treeTrunkColor));
                     }
                   }
                 }

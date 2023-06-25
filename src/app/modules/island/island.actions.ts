@@ -34,3 +34,13 @@ export const setLightStrength = createAction(
   '[IslandComponent] set light strength',
   (strength: number) => ({ strength })
 );
+
+export const setTreeLeafColor = createAction(
+  '[IslandComponent] set tree leaf color',
+  (color: `#${string}`) => ({ color })
+);
+
+export const setTreeTrunkColor = createAction(
+  '[IslandComponent] set tree trunk color',
+  (color: `#${string}`) => ({ color })
+);

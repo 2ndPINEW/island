@@ -5,4 +5,6 @@ export interface IslandState {
   seaAlpha: number;
   skyColor: `#${string}`;
   lightStrength: number;
+  treeLeafColor: `#${string}`;
+  treeTrunkColor: `#${string}`;
 }

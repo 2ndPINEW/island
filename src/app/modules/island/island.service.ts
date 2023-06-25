@@ -9,6 +9,7 @@ import {
   islandObjectKey,
   seaObjectKey,
   skyObjectKey,
+  treeObjectStartKey,
 } from 'src/app/constants/model-name';
 
 const totalSteps = 100;
@@ -132,6 +133,54 @@ export class IslandService {
     if (ambientLight && ambientLight instanceof THREE.AmbientLight) {
       ambientLight.intensity = strength / 1000;
     }
+  }
+
+  private currentTreeLeafColor = { r: 0, g: 0, b: 0 };
+  changeTreeLeafColor(color: string) {
+    of(color)
+      .pipe(
+        switchMap((targetHex) =>
+          this.colorTransitionObservable(targetHex, this.currentTreeLeafColor)
+        )
+      )
+      .subscribe((color) => {
+        const islandBase = this.threeService.objects.find(
+          (object) => object.name === islandBaseKey
+        );
+        const treeObjects = islandBase?.children.filter((object) =>
+          object.name.startsWith(treeObjectStartKey)
+        );
+        treeObjects?.forEach((object) => {
+          const leafObject = object.children[0];
+          if (leafObject && leafObject instanceof THREE.Mesh) {
+            leafObject.material.color = new THREE.Color(color);
+          }
+        });
+      });
+  }
+
+  private currentTreeTrunkColor = { r: 0, g: 0, b: 0 };
+  changeTreeTrunkColor(color: string) {
+    of(color)
+      .pipe(
+        switchMap((targetHex) =>
+          this.colorTransitionObservable(targetHex, this.currentTreeTrunkColor)
+        )
+      )
+      .subscribe((color) => {
+        const islandBase = this.threeService.objects.find(
+          (object) => object.name === islandBaseKey
+        );
+        const treeObjects = islandBase?.children.filter((object) =>
+          object.name.startsWith(treeObjectStartKey)
+        );
+        treeObjects?.forEach((object) => {
+          const trunkObject = object.children[1];
+          if (trunkObject && trunkObject instanceof THREE.Mesh) {
+            trunkObject.material.color = new THREE.Color(color);
+          }
+        });
+      });
   }
 
   // ----------------------------

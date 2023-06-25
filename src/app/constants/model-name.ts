@@ -4,3 +4,4 @@ export const islandInlandKey = 'island';
 export const islandBeachKey = 'island_1';
 export const seaObjectKey = 'Sea';
 export const skyObjectKey = 'Sky';
+export const treeObjectStartKey = 'Tree';

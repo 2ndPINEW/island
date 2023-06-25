@@ -10,6 +10,8 @@ import {
   selectLightStrength,
   selectSeaColor,
   selectSkyColor,
+  selectTreeLeafColor,
+  selectTreeTrunkColor,
 } from './island.selector';
 
 @Component({
@@ -53,6 +55,14 @@ export class IslandComponent {
 
     this.store.select(selectLightStrength).subscribe((strength) => {
       this.islandService.changeLightStrength(strength);
+    });
+
+    this.store.select(selectTreeLeafColor).subscribe((color) => {
+      this.islandService.changeTreeLeafColor(color);
+    });
+
+    this.store.select(selectTreeTrunkColor).subscribe((color) => {
+      this.islandService.changeTreeTrunkColor(color);
     });
   }
 }

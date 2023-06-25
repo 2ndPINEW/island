@@ -6,6 +6,8 @@ import {
   setSeaAlpha,
   setSeaColor,
   setSkyColor,
+  setTreeLeafColor,
+  setTreeTrunkColor,
 } from './island.actions';
 import { IslandState } from './island';
 
@@ -16,6 +18,8 @@ const initialState: IslandState = {
   seaAlpha: 0.5,
   skyColor: '#78A3FF',
   lightStrength: 100,
+  treeLeafColor: '#20A72A',
+  treeTrunkColor: '#94493A',
 };
 
 export const islandReducer = createReducer(
@@ -37,5 +41,11 @@ export const islandReducer = createReducer(
   }),
   on(setLightStrength, (state, { strength }) => {
     return { ...state, lightStrength: strength };
+  }),
+  on(setTreeLeafColor, (state, { color }) => {
+    return { ...state, treeLeafColor: color };
+  }),
+  on(setTreeTrunkColor, (state, { color }) => {
+    return { ...state, treeTrunkColor: color };
   })
 );
