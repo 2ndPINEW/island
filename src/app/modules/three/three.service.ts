@@ -62,6 +62,7 @@ export class ThreeService {
       canvas: canvasElement,
       alpha: true,
     });
+    // MEMO: これ型定義にないのなんで？
     (this.renderer as any).shadowMap.enabled = true;
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     timer(0, 16).subscribe(() => {
