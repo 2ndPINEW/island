@@ -152,6 +152,7 @@ export class ThreeService {
   }
 
   enableReceiveShadow(object: THREE.Object3D) {
+    // 空のオブジェクトは影を受け取らないし与えないようにする
     if (object.name === skyObjectKey) {
       return;
     }
